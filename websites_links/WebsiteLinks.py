@@ -19,14 +19,3 @@ class WebsiteLinks(object):
             links_list[0].append(rows['test_links'])
             # print(index, rows['Links'])
         return links_list
-
-
-
-
-
-
-
-
-
-
-

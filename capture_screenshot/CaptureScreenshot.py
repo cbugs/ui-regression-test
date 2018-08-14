@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import os
 import datetime
+import util
 
 class CaptureScreenshot(object):
 
@@ -24,17 +25,18 @@ class CaptureScreenshot(object):
         self.driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=self.chrome_driver)
   
         
-    def capture_screenshot(self,url):
-            self.driver.get(url)
-            date_stamp = str(datetime.datetime.now()).split('.')[0]
-            date_stamp = date_stamp.replace(" ", "_").replace(":", "_").replace("-", "_")
-            file_name = os.getcwd() + '\\temp\\' + date_stamp + ".png"
-            self.driver.get_screenshot_as_file(file_name)
-            return file_name
+    def capture_screenshot(self,url,pos):
+        # self.driver.get(url)
 
-            
+        driver = self.driver
+        driver.maximize_window()
+        driver.get(url)
 
-        
+        date_stamp = str(datetime.datetime.now()).split('.')[0]
+        date_stamp = date_stamp.replace(" ", "_").replace(":", "_").replace("-", "_")
+        file_name = os.getcwd() + '\\temp2\\' + date_stamp + ".png"
+        # self.driver.get_screenshot_as_file(file_name)
 
+        util.fullpage_screenshot(driver, file_name, pos)
 
-    
+        # return file_name

@@ -7,6 +7,7 @@ import os
 import numpy as np
 import PIL
 from PIL import Image, ImageOps
+import datetime
 
 class CompareImage(object):
 
@@ -45,8 +46,9 @@ class CompareImage(object):
 			cv2.rectangle(imageA, (x, y), (x + w, y + h), (0, 0, 255), 2)
 			cv2.rectangle(imageB, (x, y), (x + w, y + h), (0, 0, 255), 2)
 
-
-		image_concat_name = os.getcwd() + '\\temp\\' + 'concat_image.png'
+		date_stamp = str(datetime.datetime.now()).split('.')[0]
+		date_stamp = date_stamp.replace(" ", "_").replace(":", "_").replace("-", "_")
+		image_concat_name = os.getcwd() + '\\temp\\' + date_stamp + '_concat_image.png'
 
 		# border widths; I set them all to 150
 		top, bottom, left, right = [5]*4
@@ -67,4 +69,5 @@ class CompareImage(object):
 		#write concatenated image
 		image_concat = cv2.imwrite(image_concat_name, np.vstack(image_vstack))
 
-		return os.getcwd() + '\\temp\\' + 'concat_image.png'
+		# return os.getcwd() + '\\temp\\' + 'concat_image.png'
+		return image_concat_name

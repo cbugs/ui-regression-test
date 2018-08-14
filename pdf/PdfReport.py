@@ -29,6 +29,3 @@ class PdfReport(object):
 
         pdf.output(file_name, "F")
         # self.c.save()
-            
-        
-
