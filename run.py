@@ -7,52 +7,66 @@ import os
 import time
 import util
 import ReadFile
+import RemoveFiles
 
-# #load Links from exel
-# web_links = WebsiteLinks()
-# links = web_links.get_links_from_xl('baseline')
+#load Links from exel
+web_links = WebsiteLinks()
+links = web_links.get_links_from_xl('baseline')
 
-# #Capture screenshots from links
-# cap = CaptureScreenshot()
+#Capture screenshots from links
+cap = CaptureScreenshot()
 
-
-# imageA = None
-# imageB = None
-
-# #Compare images
-# com_image = CompareImage()
-# compared_images = []
-
-# for link in links:
-#     cap.capture_screenshot(link[0],0)
-#     # print(imageA)
-#     cap.capture_screenshot(link[1],1)
-# #     compared_images.append(com_image.get_image_comparison(imageA, imageB))
-
-read = ReadFile
-
-one = read.read_file_name("temp0")
-two = read.read_file_name("temp1")
-# print(len(one))
-
-if len(one) < len(two):
-    count = len(one)
-else:
-    count = len(two)
-
-# print(count)
-compared_images = []
+#Compare images
 com_image = CompareImage()
+compared_images = []
 
-for num in range(count):
-    # print(num)
-    time.sleep(1)
-    compared_images.append(com_image.get_image_comparison(one[num], two[num]))
-    # print(one[num] + "  " + two[num])
+# loop in links
+i = 0
+j = 1
 
+length = int(len(links[0])/2)
 
-# print(compared_images)
+for x in range(length):
 
-#print to pdf
-pdf_report = PdfReport()
-pdf_report.generate_report(compared_images)
+    cap.capture_screenshot(links[0][i], 0)
+    # print(imageA)
+    time.sleep(3)
+    cap.capture_screenshot(links[0][j], 1)
+
+    i = i + 2
+    j = j + 2
+
+    read = ReadFile
+
+    one = read.read_file_name("temp0")
+    two = read.read_file_name("temp1")
+    # print(len(one))
+
+    if len(one) < len(two):
+        count = len(one)
+    else:
+        count = len(two)
+
+    # print(count)
+    compared_images = []
+    com_image = CompareImage()
+
+    for num in range(count):
+        # print(num)
+        time.sleep(1)
+        compared_images.append(com_image.get_image_comparison(one[num], two[num]))
+        # print(one[num] + "  " + two[num])
+
+    # print(compared_images)
+
+    #print to pdf
+    pdf_report = PdfReport()
+    pdf_report.generate_report(compared_images)
+
+    # remove captured image
+    rem_file = RemoveFiles
+
+    rem_file.remove_files("temp")
+    rem_file.remove_files("temp0")
+    rem_file.remove_files("temp1")
+
