@@ -5,7 +5,8 @@ import datetime
 from PIL import Image
 
 def fullpage_screenshot(driver, file, pos):
-
+    
+        time.sleep(15)
         print("Starting chrome full page screenshot workaround ...")
 
         total_width = driver.execute_script("return document.body.offsetWidth")
@@ -78,6 +79,6 @@ def fullpage_screenshot(driver, file, pos):
             part = part + 1
             previous = rectangle
 
-        # path = os.getcwd() + '\\temp2\\' + file
-        # stitched_image.save(file)
+        driver.execute_script("window.scrollTo(0, 0)")
+
         print("Finishing chrome full page screenshot workaround...")
