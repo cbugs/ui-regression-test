@@ -21,20 +21,14 @@ com_image = CompareImage()
 compared_images = []
 
 # loop in links
-i = 0
-j = 1
-
 length = int(len(links[0])/2)
 
-for x in range(length):
+for x in range(0, length, 2):
 
-    cap.capture_screenshot(links[0][i], 0)
+    cap.capture_screenshot(links[0][x], 0)
     # print(imageA)
     time.sleep(3)
-    cap.capture_screenshot(links[0][j], 1)
-
-    i = i + 2
-    j = j + 2
+    cap.capture_screenshot(links[0][x+1], 1)
 
     read = ReadFile
 

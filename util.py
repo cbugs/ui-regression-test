@@ -4,7 +4,7 @@ import datetime
 
 from PIL import Image
 
-def fullpage_screenshot(driver, file, pos):
+def fullpage_screenshot(driver, pos):
     
         time.sleep(15)
         print("Starting chrome full page screenshot workaround ...")
