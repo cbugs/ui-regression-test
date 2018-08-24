@@ -34,9 +34,9 @@ class CaptureScreenshot(object):
 
         date_stamp = str(datetime.datetime.now()).split('.')[0]
         date_stamp = date_stamp.replace(" ", "_").replace(":", "_").replace("-", "_")
-        file_name = os.getcwd() + '\\temp2\\' + date_stamp + ".png"
+        # file_name = os.getcwd() + '\\temp2\\' + date_stamp + ".png"
         # self.driver.get_screenshot_as_file(file_name)
 
-        util.fullpage_screenshot(driver, file_name, pos)
+        util.fullpage_screenshot(driver, pos)
 
         # return file_name
